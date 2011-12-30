@@ -1,5 +1,10 @@
 ActiveAdmin.register Client do
 
+  filter :profile_first_name, :as => :string, :label => 'First Name'
+  filter :profile_last_name,  :as => :string, :label => 'Last Name'
+  filter :profile_address,    :as => :string, :label => 'Address'
+  filter :profile_email,      :as => :string, :label => 'Email'
+
   index do
     column "First Name" do |client|
       client.profile.first_name
