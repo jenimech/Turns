@@ -1,11 +1,15 @@
 ActiveAdmin.register Client do
 
+  filter :profile_dni,        :as => :string, :label => "ID/DNI"
   filter :profile_first_name, :as => :string, :label => 'First Name'
   filter :profile_last_name,  :as => :string, :label => 'Last Name'
   filter :profile_address,    :as => :string, :label => 'Address'
   filter :profile_email,      :as => :string, :label => 'Email'
 
   index do
+    column "ID/DNI" do |client|
+      client.profile.dni
+    end
     column "First Name" do |client|
       client.profile.first_name
     end
@@ -29,7 +33,7 @@ ActiveAdmin.register Client do
   form do |f|
     f.inputs "Personal Data" do
       f.fields_for :profile, f.object.profile || Profile.new do |p|
-        p.inputs :first_name, :last_name, :address, :phono, :email
+        p.inputs :dni, :first_name, :last_name, :address, :phono, :mobile_phono, :email
       end
     end
     f.inputs "More" do
@@ -43,11 +47,17 @@ ActiveAdmin.register Client do
       row 'Full Name' do
         client.profile.full_name
       end
+      row "ID/DNI" do
+        client.profile.dni
+      end
       row 'Address' do
         client.profile.address
       end
       row 'Phono' do
         client.profile.phono
+      end
+      row 'Mobile Phono' do
+        client.profile.mobile_phono
       end
       row 'E-mail' do
         link_to client.profile.email, "mailto:#{client.profile.email}" if client.profile.email
