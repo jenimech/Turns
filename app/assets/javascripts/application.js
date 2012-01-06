@@ -1,9 +1,47 @@
-// This is a manifest file that'll be compiled into including all the files listed below.
-// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
-// be included in the compiled file accessible from http://example.com/assets/application.js
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+     gd = new Date();
+     y  = gd.getFullYear();
+     m  = gd.getMonth();
+     d  = gd.getDate();
+    $('#calendar').fullCalendar({
+      weekends: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      editable: true,
+      dayClick: function(date, allDay, jsEvent, view) {
+        d = date.getDate();
+        m = date.getMonth();
+        Y = date.getFullYear();
+        H = date.getHours();
+        M = date.getMinutes();
+        day   = new Date(Y, m, d)
+        hours = new Date(Y, m, d, H, M)
+        $('#turn_day').val(day);
+        $('#turn_hour').val(hours);
+        $('#add_turn').dialog({title: 'Add a New Turn', close:'close'});
+      },
+      events: loadEvents()
+    });
+
+});
+
+function loadEvents(){
+
+   var events = []
+   $('.event').each(function(index, e){
+     turn = $(e)
+     events[index] = {
+       title: turn.attr('data_client'), 
+       start: turn.attr('data_date_start'),
+       end: turn.attr('data_date_end')
+     }
+   })
+   return events;
+}

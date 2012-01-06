@@ -14,6 +14,7 @@ ActiveAdmin.register Turn do
     column 'Date' do |turn|
       turn.date
     end
+    default_actions
   end
 
   form do |f|

@@ -8,4 +8,8 @@ class Turn < ActiveRecord::Base
    def date
     "#{day.strftime('%d %B, %Y')} #{hour.strftime('%H:%M')}"
    end
+
+   def date_end
+    "#{day.strftime('%d %B, %Y')} #{(hour + 15.minutes).strftime('%H:%M')}"
+   end
 end

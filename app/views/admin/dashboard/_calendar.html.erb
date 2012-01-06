@@ -1,0 +1,19 @@
+<div id="calendar"></div>
+
+<div id="add_turn" style="display:none;">
+  <%= form_for Turn.new, :url => {:controller => 'turns', :action => 'create'} do |f|%>
+    <%= f.label 'Client' %>
+    <%= f.select :client_id, Client.all.map {|x| [x.full_name, x.id]} %>
+    <%= f.label 'Professional' %>
+    <%= f.select :professional_id, Professional.all.map {|x| [x.full_name, x.id]} %>
+    <%= f.hidden_field :day  %>
+    <%= f.hidden_field :hour %>
+    <%= f.submit 'Save'%>
+  <% end %>
+</div>
+
+<div style="visibility:none;">
+<% Turn.all.each do |t| %>
+  <span class="event" data_date_start="<%= t.date %>" data_client="<%= t.client.full_name %>" data_professional="<%= t.professional.full_name %>" data_date_end="<%= t.date_end %>"></span>
+<% end%>
+</div>
