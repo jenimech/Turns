@@ -1,14 +1,21 @@
 <div id="calendar"></div>
 
 <div id="add_turn" style="display:none;">
+  <div id="time_for_turn"></div>
   <%= form_for Turn.new, :url => {:controller => 'turns', :action => 'create'} do |f|%>
-    <%= f.label 'Client' %>
-    <%= f.select :client_id, Client.all.map {|x| [x.full_name, x.id]} %>
-    <%= f.label 'Professional' %>
-    <%= f.select :professional_id, Professional.all.map {|x| [x.full_name, x.id]} %>
+    <div class="field">
+      <%= f.label 'Client' %>
+      <%= f.select :client_id, Client.all.map {|x| [x.full_name, x.id]} %>
+    </div>
+    <div class="field">
+      <%= f.label 'Professional' %>
+      <%= f.select :professional_id, Professional.all.map {|x| [x.full_name, x.id]} %>
+    </div>
     <%= f.hidden_field :day  %>
     <%= f.hidden_field :hour %>
-    <%= f.submit 'Save'%>
+    <div class="dialog-actions">
+      <%= f.submit 'Save'%> o <%= link_to "cancel", '#', :onclick => "$('#add_turn').dialog('close');"%>
+    </div>
   <% end %>
 </div>
 

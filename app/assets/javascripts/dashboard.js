@@ -21,7 +21,8 @@ $(document).ready(function() {
         hours = new Date(Y, m, d, H, M)
         $('#turn_day').val(day);
         $('#turn_hour').val(hours);
-        $('#add_turn').dialog({title: 'Add a New Turn', close:'close'});
+        $('#time_for_turn').html("Date: "+d+'-'+(m + 1)+'-'+Y+' ' + H + ':' + M + ' hs.');
+        $('#add_turn').dialog({title: 'Add a New Turn', close:'close', width: '250', height: '250'});
       },
       events: loadEvents()
     });
@@ -36,7 +37,8 @@ function loadEvents(){
      events[index] = {
        title: turn.attr('data_client'), 
        start: turn.attr('data_date_start'),
-       end: turn.attr('data_date_end')
+       end: turn.attr('data_date_end'),
+       allDay: false
      }
    })
    return events;

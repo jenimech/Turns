@@ -7,3 +7,34 @@
 @import "fullcalendar";
 @import "fullcalendar.print";
 @import "jquery-ui-1.8.16.custom";
+
+.fc-event-time, .fc-event-title {
+  background-color: #CFCFCF;
+  font-weight: bold;
+}
+
+.field {
+  margin:15px 0px;
+}
+
+.field label {
+  display:block;
+}
+
+.ui-widget-header {
+  border: 1px solid #666;
+  background: #666 !important;
+}
+
+.dialog-actions {
+  border-top: 1px solid #606060;
+  padding-top:10px;
+}
+
+#time_for_turn {
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #FCFCFC;
+  padding: 5px;
+  text-align: center;
+}

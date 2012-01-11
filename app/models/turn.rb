@@ -10,6 +10,6 @@ class Turn < ActiveRecord::Base
    end
 
    def date_end
-    "#{day.strftime('%d %B, %Y')} #{(hour + 15.minutes).strftime('%H:%M')}"
+    "#{day.strftime('%d %B, %Y')} #{(hour + 30.minutes).strftime('%H:%M')}"
    end
 end
